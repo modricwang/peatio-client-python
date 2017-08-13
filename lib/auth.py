@@ -39,3 +39,4 @@ class Auth():
         query = self.urlencode(params)
         signature = self.sign(verb, path, params)
         return signature, query
+

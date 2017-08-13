@@ -3,7 +3,7 @@ import urllib.request
 
 from lib.client import Client, get_api_path
 
-client = Client(access_key='your access key', secret_key='your secret key')
+client = Client(access_key='', secret_key='')
 
 #demo of GET APIs
 
@@ -18,27 +18,29 @@ print("markets:", markets)
 #market should be specified in url
 print()
 print("tickers in markets")
-for market in markets:
-    print(client.get(get_api_path('tickers') % market['id']))
+# for market in markets:
+#     print(market)
+#     print(client.get(get_api_path('tickers') % market['id']))
 
+print(client.public_get(get_api_path('tickers')%'btccny'))
 #get orders of each market
 #market should be specified in params
-print ()
-print("orders in markets")
-for market in markets:
-    print (client.get(get_api_path('orders'), {'market': market['id']}))
-
-#get order book
-print(client.get(get_api_path('order_book'), params={'market': 'btccny'}))
-
-#get tardes
-print(client.get(get_api_path('trades'), params={'market': 'btccny'}))
-
-#get my trades
-print(client.get(get_api_path('my_trades'), params={'market': 'btccny'}))
-
-#get k line
-print(client.get(get_api_path('k'), params={'market': 'btccny'}))
+# print ()
+# print("orders in markets")
+# for market in markets:
+#     print (client.get(get_api_path('orders'), {'market': market['id']}))
+#
+# #get order book
+# print(client.get(get_api_path('order_book'), params={'market': 'btccny'}))
+#
+# #get tardes
+# print(client.get(get_api_path('trades'), params={'market': 'btccny'}))
+#
+# #get my trades
+# print(client.get(get_api_path('my_trades'), params={'market': 'btccny'}))
+#
+# #get k line
+# print(client.get(get_api_path('k'), params={'market': 'btccny'}))
 
 
 #demo of POST APIs
