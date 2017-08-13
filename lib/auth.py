@@ -9,8 +9,7 @@ class Auth():
         self.secret_key = secret_key
 
     def urlencode(self, params):
-        keys = params.keys()
-        keys.sort()
+        keys = sorted(params)
         query = ''
         for key in keys:
             value = params[key]
@@ -30,7 +29,7 @@ class Auth():
     def sign(self, verb, path, params=None):
         query = self.urlencode(params)
         msg = "|".join([verb, path, query])
-        signature = hmac.new(self.secret_key, msg=msg, digestmod=hashlib.sha256).hexdigest()
+        signature = hmac.new(self.secret_key.encode(encoding='utf-8'), msg=msg.encode(encoding='utf-8'), digestmod=hashlib.sha256).hexdigest()
         return signature
 
     def sign_params(self, verb, path, params=None):
